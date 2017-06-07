@@ -8,7 +8,9 @@ API_GET_CREDENTIALS = "http://api.jsx.exchange/v1/getContractCredentials"
 
 def get_cred_dir(contract_id):
     home = os.path.expanduser("~/.jsxe/machines/")
-    return os.path.join(home, contract_id)
+    cred_dir = os.path.join(home, contract_id)
+    jsxe.mkdir_p(cred_dir)
+    return os.path.expanduser(cred_dir)
 
 def get_credentials(contract_id):
     cred_dir = get_cred_dir(contract_id)

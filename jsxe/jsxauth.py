@@ -102,7 +102,7 @@ def refresh_token(refresh_token):
     res = conn.getresponse()
     data = res.read()
     
-    print "The token payload is:", data
+    # print "The token payload is:", data
     
     return json.loads(data.decode("utf-8"))
 
