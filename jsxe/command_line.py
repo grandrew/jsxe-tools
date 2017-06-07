@@ -17,7 +17,6 @@ def get_credentials(contract_id):
     
     try:
         js=json.load(file(os.path.join(cred_dir, "jsx.json")))
-        print "# Loaded cached credentials for", contract_id
     except:
         print "# Please run `jsx fetch %s` first" % contract_id
         sys.exit()
@@ -26,11 +25,10 @@ def get_credentials(contract_id):
 
 def print_env(js, cred_dir, contract_id):
     if "IPv6-Addr" in js:
-        ip = js["IPv6-Addr"]
+        ip = "["+js["IPv6-Addr"]+"]"
     else:
         ip = js["IP-Addr"]
-    env = """
-export DOCKER_TLS_VERIFY="1"
+    env = """export DOCKER_TLS_VERIFY="1"
 export DOCKER_HOST="tcp://%(IP)s:%(PORT)s"
 export DOCKER_CERT_PATH="%(CERTPATH)s"
 export DOCKER_MACHINE_NAME="%(CID)s"
